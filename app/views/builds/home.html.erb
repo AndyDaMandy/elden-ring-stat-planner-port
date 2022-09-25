@@ -1,0 +1,147 @@
+ <div>
+        <h1>Elden Ring Character Attribute Planner</h1>
+        <button onclick="document.getElementById('base-screen').hidden = false;">Show Base Attributes for Classes</button>
+        <div id="base-screen" hidden>
+            <h2>View Class's Base Attributes:</h2>
+            <p><em>Click classes to view their base attributes</em></p>
+            <button onclick="document.getElementById('base-screen').hidden = true;">Hide Base Attributes</button>
+            <button id="vag-btn">Vagabond</button>
+            <button id="war-btn">Warrior</button>
+            <button id="hro-btn">Hero</button>
+            <button id="ban-btn">Bandit</button>
+            <button id="ast-btn">Astrologer</button>
+            <button id="pro-btn">Prophet</button>
+            <button id="sam-btn">Samurai</button>
+            <button id="pri-btn">Prisoner</button>
+            <button id="con-btn">Confessor</button>
+            <button id="wre-btn">Wretch</button>
+            <div>
+                <!--Generates base attributes and places into display-base-->
+                <div id="display-base"></div>
+                <hr>
+            </div>
+        </div>
+    <!-- dom manipulation below-->
+    <div id="save-delete" hidden>
+        <h2>Delete Data</h2>
+        <p><em>Saving and loading uses local storage If you clear your browser data you will lose your data!</em></p>
+        <button onclick="document.getElementById('save-delete').hidden = true">Close Delete Menu</button>
+        <h3>Delete Buttons</h3>
+        <p><em>Warning! You cannot undo a delete! Be careful with your selection!</em></p>
+        <button id="clear-button" onclick="clearData()">Clear All Slot-Data</button>
+        <button onclick="clearOne()">Clear Slot 1</button>
+        <button onclick="clearTwo()">Clear Slot 2</button>
+        <button onclick="clearThree()">Clear Slot 3</button>
+        <hr>
+    </div>
+    <div id="planner">
+        <h2>Character Slots</h2>
+        <p><em>Select a Character slot to either load your saved slots or start a new one</em></p>
+        <div id="slot-buttons">
+            <button id="slot-one" onclick="slotOneCheck()">Slot One</button>
+            <button id="slot-two" onclick="slotTwoCheck()">Slot Two</button>
+            <button id="slot-three" onclick="slotThreeCheck()">Slot Three</button>
+            <button id="save-button" onclick="saveData()">Save All Slot-Data</button>
+            <button id="show save" onclick="document.getElementById('save-delete').hidden = false">Show Delete Data Menu</button>
+            
+        </div>
+        <div id="chooseClass-1" hidden>
+            <h2>Choose your Class for Slot 1</h2>
+            <button onclick="generateChar(vagabond, 1)">Vagabond</button>
+            <button onclick="generateChar(warrior, 1)">Warrior</button>
+            <button onclick="generateChar(hero, 1)">Hero</button>
+            <button onclick="generateChar(bandit, 1)">Bandit</button>
+            <button onclick="generateChar(astrologer, 1)">Astrologer</button>
+            <button onclick="generateChar(prophet, 1)">Prophet</button>
+            <button onclick="generateChar(samurai, 1)">Samurai</button>
+            <button onclick="generateChar(prisoner, 1)">Prisoner</button>
+            <button onclick="generateChar(confessor, 1)">Confessor</button>
+            <button onclick="generateChar(wretch, 1)">Wretch</button>
+        </div>
+        <div id="chooseClass-2" hidden>
+            <h2>Choose your Class for Slot 2</h2>
+            <button onclick="generateChar(vagabond, 2)">Vagabond</button>
+            <button onclick="generateChar(warrior, 2)">Warrior</button>
+            <button onclick="generateChar(hero, 2)">Hero</button>
+            <button onclick="generateChar(bandit, 2)">Bandit</button>
+            <button onclick="generateChar(astrologer, 2)">Astrologer</button>
+            <button onclick="generateChar(prophet, 2)">Prophet</button>
+            <button onclick="generateChar(samurai, 2)">Samurai</button>
+            <button onclick="generateChar(prisoner, 2)">Prisoner</button>
+            <button onclick="generateChar(confessor, 2)">Confessor</button>
+            <button onclick="generateChar(wretch, 2)">Wretch</button>
+        </div>
+        <div id="chooseClass-3" hidden>
+            <h2>Choose your Class for Slot 3</h2>
+            <button onclick="generateChar(vagabond, 3)">Vagabond</button>
+            <button onclick="generateChar(warrior, 3)">Warrior</button>
+            <button onclick="generateChar(hero, 3)">Hero</button>
+            <button onclick="generateChar(bandit, 3)">Bandit</button>
+            <button onclick="generateChar(astrologer, 3)">Astrologer</button>
+            <button onclick="generateChar(prophet, 3)">Prophet</button>
+            <button onclick="generateChar(samurai, 3)">Samurai</button>
+            <button onclick="generateChar(prisoner, 3)">Prisoner</button>
+            <button onclick="generateChar(confessor, 3)">Confessor</button>
+            <button onclick="generateChar(wretch, 3)">Wretch</button>
+        </div>
+    </div>
+        <div class="slots" id="display-slot-one" hidden>
+            <!--Displays your choice of class here-->
+        </div>
+        <div id="stat-boost-1"hidden>
+            <!--Selecting a button will boost level by 1 and then update display-choice.-->
+            <h3>Attributes to level:</h3>
+            <p><em>Please select an attribute to level, your character level will also go up when you've made your choice.</em></p>
+            <button onclick="addStatOne('Vigor')">Vigor</button>
+            <button onclick="addStatOne('Mind')">Mind</button>
+            <button onclick="addStatOne('Endurance')">Endurance</button>
+            <button onclick="addStatOne('Strength')">Strength</button>
+            <button onclick="addStatOne('Dexterity')">Dexterity</button>
+            <button onclick="addStatOne('Intelligence')">Intelligence</button>
+            <button onclick="addStatOne('Faith')">Faith</button>
+            <button onclick="addStatOne('Arcane')">Arcane</button>
+            <button onclick="backOne()">Go Back a Level</button>
+            <button onclick="saveOne()">Save Slot 1</button>
+            <button onclick="document.getElementById('display-slot-one').hidden = true; document.getElementById('stat-boost-1').hidden = true;">Hide Slot</button>
+            <hr>
+        </div>
+        <div class="slots" id="display-slot-two" hidden>
+            <!--Displays your choice of class here-->
+        </div>
+        <div id="stat-boost-2"hidden>
+            <!--Selecting a button will boost level by 1 and then update display-choice.-->
+            <h3>Attributes to level:</h3>
+            <p><em>Please select an attribute to level, your character level will also go up when you've made your choice.</em></p>
+            <button onclick="addStatTwo('Vigor')">Vigor</button>
+            <button onclick="addStatTwo('Mind')">Mind</button>
+            <button onclick="addStatTwo('Endurance')">Endurance</button>
+            <button onclick="addStatTwo('Strength')">Strength</button>
+            <button onclick="addStatTwo('Dexterity')">Dexterity</button>
+            <button onclick="addStatTwo('Intelligence')">Intelligence</button>
+            <button onclick="addStatTwo('Faith')">Faith</button>
+            <button onclick="addStatTwo('Arcane')">Arcane</button>
+            <button onclick="backTwo()">Go Back a Level</button>
+            <button onclick="saveTwo()">Save Slot 2</button>
+            <button onclick="document.getElementById('display-slot-two').hidden = true; document.getElementById('stat-boost-2').hidden = true;">Hide Slot</button>
+            <hr>
+        </div>
+        <div class="slots" id="display-slot-three" hidden>
+            <!--Displays your choice of class here-->
+        </div>
+        
+        <div id="stat-boost-3"hidden>
+            <!--Selecting a button will boost level by 1 and then update display-choice.-->
+            <h3>Attributes to level:</h3>
+            <p><em>Please select an attribute to level, your character level will also go up when you've made your choice.</em></p>
+            <button onclick="addStatThree('Vigor')">Vigor</button>
+            <button onclick="addStatThree('Mind')">Mind</button>
+            <button onclick="addStatThree('Endurance')">Endurance</button>
+            <button onclick="addStatThree('Strength')">Strength</button>
+            <button onclick="addStatThree('Dexterity')">Dexterity</button>
+            <button onclick="addStatThree('Intelligence')">Intelligence</button>
+            <button onclick="addStatThree('Faith')">Faith</button>
+            <button onclick="addStatThree('Arcane')">Arcane</button>
+            <button onclick="backThree()">Go Back a Level</button>
+            <button onclick="saveThree()">Save Slot 3</button>
+            <button onclick="document.getElementById('display-slot-three').hidden = true; document.getElementById('stat-boost-3').hidden = true;">Hide Slot</button>
+        </div>
